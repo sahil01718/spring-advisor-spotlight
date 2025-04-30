@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
@@ -45,7 +44,7 @@ const AdvisorDetail: React.FC = () => {
     {
       id: '3',
       title: 'Retirement Planning in Your 30s: Why It Matters',
-      excerpt: 'Starting retirement planning early can make a significant difference. Here's why your 30s are crucial.',
+      excerpt: "Starting retirement planning early can make a significant difference. Here's why your 30s are crucial.",
       publishDate: '2023-08-05',
       slug: 'retirement-planning-30s',
       coverImage: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1480&q=80'
