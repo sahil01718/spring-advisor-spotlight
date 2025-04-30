@@ -49,7 +49,7 @@ const AdvisorCard: React.FC<AdvisorCardProps> = ({ advisor }) => {
         <h3 className="font-semibold text-xl mb-1">{firmName}</h3>
         <p className="text-sm text-muted-foreground mb-3">{advisorName}</p>
         
-        <p className="text-sm mb-4">{tagline}</p>
+        <p className="text-sm mb-4 line-clamp-2">{tagline}</p>
         
         <div className="flex flex-wrap gap-2">
           {displaySpecializations.map((specialization) => (
@@ -61,7 +61,7 @@ const AdvisorCard: React.FC<AdvisorCardProps> = ({ advisor }) => {
       </CardContent>
       
       <CardFooter className="p-4 pt-0 mt-auto">
-        <Button asChild className="w-full bg-spring-green hover:bg-spring-green/90">
+        <Button asChild variant="spring" className="w-full">
           <Link to={`/advisor/${id}`}>
             View Profile
           </Link>

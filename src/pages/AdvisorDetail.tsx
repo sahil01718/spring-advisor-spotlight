@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
@@ -61,7 +62,9 @@ const AdvisorDetail: React.FC = () => {
         const foundAdvisor = mockAdvisors.find(a => a.id === id);
         setAdvisor(foundAdvisor || null);
       } finally {
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 500); // Small timeout to ensure UI elements have time to render
       }
     };
     
@@ -92,7 +95,7 @@ const AdvisorDetail: React.FC = () => {
           <h1 className="text-2xl font-bold mb-4">Advisor Not Found</h1>
           <p className="mb-6">We couldn't find the advisor you're looking for.</p>
           <Link to="/">
-            <Button>Return to Marketplace</Button>
+            <Button variant="spring">Return to Marketplace</Button>
           </Link>
         </div>
       </div>
@@ -158,23 +161,27 @@ const AdvisorDetail: React.FC = () => {
               
               <div className="flex flex-wrap gap-3">
                 {advisor.contactDetails.calendlyLink && (
-                  <Button className="bg-spring-green hover:bg-spring-green/90">
-                    <Calendar size={16} className="mr-2" />
-                    Book Consultation
+                  <Button variant="spring" asChild>
+                    <a href={advisor.contactDetails.calendlyLink} target="_blank" rel="noopener noreferrer">
+                      <Calendar size={16} />
+                      Book Consultation
+                    </a>
                   </Button>
                 )}
                 
                 {advisor.contactDetails.email && (
-                  <Button variant="outline">
-                    <Mail size={16} className="mr-2" />
-                    Contact
+                  <Button variant="outline" asChild>
+                    <a href={`mailto:${advisor.contactDetails.email}`}>
+                      <Mail size={16} />
+                      Contact
+                    </a>
                   </Button>
                 )}
                 
                 {advisor.contactDetails.website && (
                   <Button variant="outline" asChild>
                     <a href={advisor.contactDetails.website} target="_blank" rel="noopener noreferrer">
-                      <LinkIcon size={16} className="mr-2" />
+                      <LinkIcon size={16} />
                       Website
                     </a>
                   </Button>
@@ -191,7 +198,7 @@ const AdvisorDetail: React.FC = () => {
           {/* Main Content - Left Side */}
           <div className="lg:col-span-2">
             {/* About */}
-            <section className="mb-12">
+            <section className="mb-12 bg-white p-6 rounded-lg shadow-sm">
               <h2 className="text-2xl font-semibold mb-4">About the Firm</h2>
               <div className="prose max-w-none">
                 <p>{advisor.about}</p>
@@ -199,7 +206,7 @@ const AdvisorDetail: React.FC = () => {
             </section>
             
             {/* Services */}
-            <section className="mb-12">
+            <section className="mb-12 bg-white p-6 rounded-lg shadow-sm">
               <h2 className="text-2xl font-semibold mb-4">Services Offered</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {advisor.services.map((service, index) => (
@@ -214,7 +221,7 @@ const AdvisorDetail: React.FC = () => {
             </section>
             
             {/* Target Audience */}
-            <section className="mb-12">
+            <section className="mb-12 bg-white p-6 rounded-lg shadow-sm">
               <h2 className="text-2xl font-semibold mb-4">Who They Serve</h2>
               <div className="flex flex-wrap gap-2">
                 {advisor.audience.map((audience) => (
@@ -227,7 +234,7 @@ const AdvisorDetail: React.FC = () => {
             
             {/* Success Stories */}
             {advisor.successStories && advisor.successStories.length > 0 && (
-              <section className="mb-12">
+              <section className="mb-12 bg-white p-6 rounded-lg shadow-sm">
                 <h2 className="text-2xl font-semibold mb-4">Success Stories</h2>
                 <div className="space-y-3">
                   {advisor.successStories.map((story, index) => (
@@ -250,7 +257,7 @@ const AdvisorDetail: React.FC = () => {
             
             {/* Testimonials */}
             {advisor.testimonials && advisor.testimonials.length > 0 && (
-              <section className="mb-12">
+              <section className="mb-12 bg-white p-6 rounded-lg shadow-sm">
                 <h2 className="text-2xl font-semibold mb-4">Client Testimonials</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {advisor.testimonials.map((testimonial, index) => (
@@ -260,33 +267,33 @@ const AdvisorDetail: React.FC = () => {
               </section>
             )}
             
-            {/* Blog Posts - New Section */}
-            <section className="mb-12">
+            {/* Blog Posts - Enhanced Section */}
+            <section className="mb-12 bg-white p-6 rounded-lg shadow-sm">
               <h2 className="text-2xl font-semibold mb-4 flex items-center">
                 <BookOpen size={24} className="mr-2 text-spring-green" />
                 Latest Insights from {advisor.firmName}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {blogs.map((blog) => (
-                  <Card key={blog.id} className="overflow-hidden hover:shadow-lg transition-all">
+                  <Card key={blog.id} className="overflow-hidden hover:shadow-lg transition-all h-full flex flex-col">
                     {blog.coverImage && (
                       <div className="aspect-[16/9] overflow-hidden">
                         <img 
                           src={blog.coverImage} 
                           alt={blog.title} 
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
                         />
                       </div>
                     )}
-                    <CardContent className="p-5">
+                    <CardContent className="p-5 flex-grow flex flex-col">
                       <p className="text-sm text-muted-foreground mb-2">
                         {formatDate(blog.publishDate)}
                       </p>
                       <h3 className="text-lg font-semibold mb-2">{blog.title}</h3>
-                      <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                      <p className="text-sm text-muted-foreground mb-4 line-clamp-2 flex-grow">
                         {blog.excerpt}
                       </p>
-                      <Button variant="outline" className="text-spring-green border-spring-green hover:bg-spring-green/10" asChild>
+                      <Button variant="spring" size="sm" className="mt-auto self-start" asChild>
                         <Link to={`/blogs/${blog.slug}`}>
                           Read More
                         </Link>
@@ -309,7 +316,7 @@ const AdvisorDetail: React.FC = () => {
           {/* Sidebar - Right Side */}
           <div className="space-y-6">
             {/* Contact Card */}
-            <Card>
+            <Card className="shadow-sm">
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold mb-4">Contact Information</h3>
                 
@@ -317,14 +324,18 @@ const AdvisorDetail: React.FC = () => {
                   {advisor.contactDetails.phone && (
                     <div className="flex items-start">
                       <Phone size={16} className="mr-3 mt-1 text-spring-green" />
-                      <span>{advisor.contactDetails.phone}</span>
+                      <a href={`tel:${advisor.contactDetails.phone}`} className="hover:text-spring-green">
+                        {advisor.contactDetails.phone}
+                      </a>
                     </div>
                   )}
                   
                   {advisor.contactDetails.email && (
                     <div className="flex items-start">
                       <Mail size={16} className="mr-3 mt-1 text-spring-green" />
-                      <span>{advisor.contactDetails.email}</span>
+                      <a href={`mailto:${advisor.contactDetails.email}`} className="hover:text-spring-green">
+                        {advisor.contactDetails.email}
+                      </a>
                     </div>
                   )}
                   
@@ -345,13 +356,13 @@ const AdvisorDetail: React.FC = () => {
                 
                 {advisor.contactDetails.calendlyLink && (
                   <div className="mt-6">
-                    <Button className="w-full bg-spring-green hover:bg-spring-green/90" asChild>
+                    <Button variant="spring" className="w-full" asChild>
                       <a 
                         href={advisor.contactDetails.calendlyLink} 
                         target="_blank" 
                         rel="noopener noreferrer"
                       >
-                        <Calendar size={16} className="mr-2" />
+                        <Calendar size={16} />
                         Schedule a Meeting
                       </a>
                     </Button>
@@ -362,7 +373,7 @@ const AdvisorDetail: React.FC = () => {
             
             {/* Social Media */}
             {advisor.socialMedia && advisor.socialMedia.length > 0 && (
-              <Card>
+              <Card className="shadow-sm">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold mb-4">Connect</h3>
                   <SocialLinks socialMedia={advisor.socialMedia} />
@@ -371,7 +382,7 @@ const AdvisorDetail: React.FC = () => {
             )}
             
             {/* SEBI Registration */}
-            <Card>
+            <Card className="shadow-sm">
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold mb-4">Regulatory Information</h3>
                 <div className="mb-3">
@@ -386,6 +397,31 @@ const AdvisorDetail: React.FC = () => {
                     <p className="text-sm">{advisor.grievanceOfficer.email}</p>
                   </div>
                 )}
+              </CardContent>
+            </Card>
+            
+            {/* Quick Actions */}
+            <Card className="shadow-sm bg-spring-green/5 border-spring-green/20">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
+                <div className="space-y-3">
+                  <Button variant="spring" className="w-full" asChild>
+                    <a href="#" onClick={(e) => {
+                      e.preventDefault(); 
+                      window.location.href = `mailto:${advisor.contactDetails.email}?subject=Request for Financial Consultation`;
+                    }}>
+                      Request Consultation
+                    </a>
+                  </Button>
+                  <Button variant="outline" className="w-full" asChild>
+                    <a href="#" onClick={(e) => {
+                      e.preventDefault();
+                      window.open('https://forms.gle/example', '_blank');
+                    }}>
+                      Download Brochure
+                    </a>
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </div>
