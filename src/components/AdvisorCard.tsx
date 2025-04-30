@@ -32,7 +32,7 @@ const AdvisorCard: React.FC<AdvisorCardProps> = ({ advisor }) => {
         </div>
         {verifiedBySpring && (
           <div className="absolute top-2 right-2 bg-white rounded-full p-1">
-            <Badge variant="outline" className="bg-spring-soft-purple border-spring-purple text-spring-purple flex items-center gap-1 px-2">
+            <Badge variant="outline" className="bg-spring-soft-green border-spring-green text-spring-green flex items-center gap-1 px-2">
               <CheckCircle size={14} />
               <span>Verified</span>
             </Badge>

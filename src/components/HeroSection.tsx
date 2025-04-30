@@ -17,7 +17,7 @@ const HeroSection: React.FC = () => {
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button 
               size="lg" 
-              className="bg-spring-purple hover:bg-spring-purple/90 text-white"
+              className="bg-spring-green hover:bg-spring-green/90 text-white"
               asChild
             >
               <Link to="/onboarding">
@@ -43,7 +43,7 @@ const HeroSection: React.FC = () => {
             <span>SEBI Registered</span>
           </div>
           <div className="flex items-center">
-            <span className="bg-spring-purple rounded-full h-2 w-2 mr-2"></span>
+            <span className="bg-spring-green rounded-full h-2 w-2 mr-2"></span>
             <span>Verified Credentials</span>
           </div>
           <div className="flex items-center">
@@ -51,7 +51,7 @@ const HeroSection: React.FC = () => {
             <span>Transparent Fees</span>
           </div>
           <div className="flex items-center">
-            <span className="bg-spring-purple rounded-full h-2 w-2 mr-2"></span>
+            <span className="bg-spring-green rounded-full h-2 w-2 mr-2"></span>
             <span>Fiduciary Standard</span>
           </div>
         </div>
@@ -63,7 +63,7 @@ const HeroSection: React.FC = () => {
         style={{ animationDelay: "0s" }}
       ></div>
       <div 
-        className="absolute top-1/2 -right-10 w-32 h-32 rounded-full bg-spring-soft-purple opacity-60 animate-float" 
+        className="absolute top-1/2 -right-10 w-32 h-32 rounded-full bg-spring-soft-green opacity-60 animate-float" 
         style={{ animationDelay: "0.5s" }}
       ></div>
       <div 

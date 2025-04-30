@@ -19,7 +19,7 @@
     --primary: 152 80% 31%;  /* Spring green */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 240 57% 56%;  /* Spring purple */
+    --secondary: 152 80% 31%; /* Changed from purple to green */
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
@@ -60,7 +60,7 @@
     --primary: 152 80% 31%;  /* Spring green */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 240 57% 56%;  /* Spring purple */
+    --secondary: 152 80% 31%; /* Changed from purple to green */
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
@@ -97,7 +97,7 @@
 }
 
 .gradient-bg {
-  background: linear-gradient(135deg, #F2FCE2 0%, #E5DEFF 100%);
+  background: linear-gradient(135deg, #F2FCE2 0%, #F2FCE2 100%);
 }
 
 .bg-pattern {
