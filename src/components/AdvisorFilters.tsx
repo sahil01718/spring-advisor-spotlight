@@ -183,12 +183,12 @@ const AdvisorFilters: React.FC<FiltersProps> = ({
         <div className="mt-4 flex flex-wrap gap-2">
           {selectedLocation && (
             <Badge 
-              variant="secondary" 
+              variant="tag" 
               className="px-3 py-1 flex items-center gap-1"
               onClick={() => setSelectedLocation(null)}
             >
               {selectedLocation}
-              <button className="ml-1 hover:bg-gray-200 rounded-full w-4 h-4 inline-flex items-center justify-center">
+              <button className="ml-1 hover:bg-gray-200 rounded-full w-4 h-4 inline-flex items-center justify-center text-white">
                 ✕
               </button>
             </Badge>
@@ -197,12 +197,12 @@ const AdvisorFilters: React.FC<FiltersProps> = ({
           {selectedSpecializations.map((spec) => (
             <Badge 
               key={spec} 
-              variant="secondary" 
+              variant="tag" 
               className="px-3 py-1 flex items-center gap-1"
               onClick={() => toggleSpecialization(spec)}
             >
               {spec}
-              <button className="ml-1 hover:bg-gray-200 rounded-full w-4 h-4 inline-flex items-center justify-center">
+              <button className="ml-1 hover:bg-gray-200 rounded-full w-4 h-4 inline-flex items-center justify-center text-white">
                 ✕
               </button>
             </Badge>
@@ -210,12 +210,12 @@ const AdvisorFilters: React.FC<FiltersProps> = ({
           
           {selectedAudience && (
             <Badge 
-              variant="secondary" 
+              variant="tag" 
               className="px-3 py-1 flex items-center gap-1"
               onClick={() => setSelectedAudience(null)}
             >
               {selectedAudience}
-              <button className="ml-1 hover:bg-gray-200 rounded-full w-4 h-4 inline-flex items-center justify-center">
+              <button className="ml-1 hover:bg-gray-200 rounded-full w-4 h-4 inline-flex items-center justify-center text-white">
                 ✕
               </button>
             </Badge>

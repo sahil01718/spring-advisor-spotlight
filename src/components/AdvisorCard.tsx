@@ -53,7 +53,7 @@ const AdvisorCard: React.FC<AdvisorCardProps> = ({ advisor }) => {
         
         <div className="flex flex-wrap gap-2">
           {displaySpecializations.map((specialization) => (
-            <Badge key={specialization} variant="secondary" className="font-normal">
+            <Badge key={specialization} variant="tag" className="font-normal">
               {specialization}
             </Badge>
           ))}

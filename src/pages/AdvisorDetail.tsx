@@ -107,7 +107,7 @@ const AdvisorDetail: React.FC = () => {
               
               <div className="flex flex-wrap gap-2 mb-6">
                 {advisor.specializations.map((specialization) => (
-                  <Badge key={specialization} variant="secondary">
+                  <Badge key={specialization} variant="tag">
                     {specialization}
                   </Badge>
                 ))}
@@ -175,7 +175,7 @@ const AdvisorDetail: React.FC = () => {
               <h2 className="text-2xl font-semibold mb-4">Who They Serve</h2>
               <div className="flex flex-wrap gap-2">
                 {advisor.audience.map((audience) => (
-                  <Badge key={audience} variant="outline" className="text-sm">
+                  <Badge key={audience} variant="tag" className="text-sm">
                     {audience}
                   </Badge>
                 ))}
