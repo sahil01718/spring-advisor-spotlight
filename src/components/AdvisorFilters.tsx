@@ -36,12 +36,12 @@ const AdvisorFilters: React.FC<AdvisorFiltersProps> = ({
   };
 
   return (
-    <div className="mb-8 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+    <div className="mb-8 bg-[#FCFFFE] p-6 rounded-lg shadow-sm border border-gray-200">
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-        <h3 className="text-xl font-semibold">Filter Advisors</h3>
+        <h3 className="text-xl font-semibold text-[#272A2B]">Filter Advisors</h3>
         <button
           onClick={resetFilters}
-          className="text-sm text-green-600 hover:text-green-700 hover:underline"
+          className="text-sm text-[#108E66] hover:text-opacity-80 hover:underline"
         >
           Reset Filters
         </button>
@@ -50,13 +50,13 @@ const AdvisorFilters: React.FC<AdvisorFiltersProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Location Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-[#272A2B] mb-2">
             Location
           </label>
           <select
             value={selectedLocation || ''}
             onChange={(e) => setSelectedLocation(e.target.value as Location || null)}
-            className="w-full h-10 pl-3 pr-6 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+            className="w-full h-10 pl-3 pr-6 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#108E66] focus:border-[#108E66] bg-[#FCFFFE]"
           >
             <option value="">All Locations</option>
             {locations.map((location) => (
@@ -69,13 +69,13 @@ const AdvisorFilters: React.FC<AdvisorFiltersProps> = ({
         
         {/* Audience Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-[#272A2B] mb-2">
             Client Type
           </label>
           <select
             value={selectedAudience || ''}
             onChange={(e) => setSelectedAudience(e.target.value as AudienceType || null)}
-            className="w-full h-10 pl-3 pr-6 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+            className="w-full h-10 pl-3 pr-6 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#108E66] focus:border-[#108E66] bg-[#FCFFFE]"
           >
             <option value="">All Client Types</option>
             {audienceTypes.map((audience) => (
@@ -89,7 +89,7 @@ const AdvisorFilters: React.FC<AdvisorFiltersProps> = ({
       
       {/* Specializations Filter */}
       <div className="mt-6">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-[#272A2B] mb-2">
           Specializations
         </label>
         <div className="flex flex-wrap gap-2">
@@ -99,8 +99,8 @@ const AdvisorFilters: React.FC<AdvisorFiltersProps> = ({
               onClick={() => toggleSpecialization(spec)}
               className={`inline-flex items-center rounded-full px-3 py-1 text-sm font-medium transition-colors
                 ${selectedSpecializations.includes(spec) 
-                  ? 'bg-green-500 text-white' 
-                  : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                  ? 'bg-[#108E66] text-[#FCFFFE]' 
+                  : 'bg-gray-100 text-[#272A2B] hover:bg-gray-200'
                 }`}
             >
               {spec}

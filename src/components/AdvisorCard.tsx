@@ -15,7 +15,7 @@ const AdvisorCard: React.FC<AdvisorCardProps> = ({ advisor }) => {
   const displaySpecializations = specializations.slice(0, 3);
   
   return (
-    <div className="h-full flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white hover:shadow-lg transition-shadow duration-300 animate-fade-in">
+    <div className="h-full flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-[#FCFFFE] hover:shadow-lg transition-shadow duration-300 animate-fade-in">
       {/* Card Header/Image */}
       <div className="p-0 relative">
         <div className="aspect-[3/2] overflow-hidden bg-gray-100">
@@ -29,8 +29,8 @@ const AdvisorCard: React.FC<AdvisorCardProps> = ({ advisor }) => {
           />
         </div>
         {verifiedBySpring && (
-          <div className="absolute top-2 right-2 bg-white rounded-full p-1">
-            <div className="inline-flex items-center rounded-full border-transparent bg-green-50 border px-2.5 py-0.5 text-xs font-semibold text-green-600">
+          <div className="absolute top-2 right-2 bg-[#FCFFFE] rounded-full p-1">
+            <div className="inline-flex items-center rounded-full border-transparent bg-green-50 border px-2.5 py-0.5 text-xs font-semibold text-[#108E66]">
               <CheckCircle size={14} className="mr-1" />
               <span>Verified</span>
             </div>
@@ -45,14 +45,14 @@ const AdvisorCard: React.FC<AdvisorCardProps> = ({ advisor }) => {
           <span>{location}</span>
         </div>
         
-        <h3 className="font-semibold text-xl mb-1">{firmName}</h3>
+        <h3 className="font-semibold text-xl mb-1 text-[#272A2B]">{firmName}</h3>
         <p className="text-sm text-gray-500 mb-3">{advisorName}</p>
         
-        <p className="text-sm mb-4 line-clamp-2">{tagline}</p>
+        <p className="text-sm mb-4 line-clamp-2 text-[#272A2B]">{tagline}</p>
         
         <div className="flex flex-wrap gap-2">
           {displaySpecializations.map((specialization) => (
-            <span key={specialization} className="inline-flex items-center rounded-full bg-green-500 px-2.5 py-0.5 text-xs font-semibold text-white">
+            <span key={specialization} className="inline-flex items-center rounded-full bg-[#108E66] px-2.5 py-0.5 text-xs font-semibold text-[#FCFFFE]">
               {specialization}
             </span>
           ))}
@@ -63,7 +63,7 @@ const AdvisorCard: React.FC<AdvisorCardProps> = ({ advisor }) => {
       <div className="p-4 pt-0 mt-auto">
         <Link 
           to={`/advisor/${id}`}
-          className="w-full flex justify-center items-center h-10 px-4 py-2 rounded-md bg-green-500 text-white font-medium hover:bg-green-600 transition-colors"
+          className="w-full flex justify-center items-center h-10 px-4 py-2 rounded-md bg-[#108E66] text-[#FCFFFE] font-medium hover:bg-opacity-90 transition-colors"
         >
           View Profile
         </Link>

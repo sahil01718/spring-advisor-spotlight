@@ -7,7 +7,7 @@ const HeroSection: React.FC = () => {
     <div className="relative overflow-hidden py-16 sm:py-24 px-4 bg-gradient-to-br from-green-50 to-green-100 bg-pattern">
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-800 mb-6 leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-bold text-[#272A2B] mb-6 leading-tight">
             Find Your Trusted Financial Advisor
           </h1>
           <p className="max-w-2xl mx-auto text-xl sm:text-2xl text-gray-600 mb-8">
@@ -16,13 +16,13 @@ const HeroSection: React.FC = () => {
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link 
               to="/onboarding"
-              className="inline-flex h-11 items-center justify-center rounded-md bg-green-500 px-8 font-medium text-white shadow hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+              className="inline-flex h-11 items-center justify-center rounded-md bg-[#108E66] px-8 font-medium text-[#FCFFFE] shadow hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[#108E66] focus:ring-offset-2"
             >
               List Your Practice
             </Link>
             <a 
               href="#advisorList"
-              className="inline-flex h-11 items-center justify-center rounded-md border border-green-500 bg-transparent px-8 font-medium text-green-500 hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+              className="inline-flex h-11 items-center justify-center rounded-md border border-[#108E66] bg-transparent px-8 font-medium text-[#108E66] hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-[#108E66] focus:ring-offset-2"
             >
               Browse Advisors
             </a>
@@ -31,19 +31,19 @@ const HeroSection: React.FC = () => {
         
         <div className="mt-12 max-w-md mx-auto flex flex-wrap justify-center gap-3 text-sm text-center">
           <div className="flex items-center">
-            <span className="bg-green-500 rounded-full h-2 w-2 mr-2"></span>
+            <span className="bg-[#108E66] rounded-full h-2 w-2 mr-2"></span>
             <span>SEBI Registered</span>
           </div>
           <div className="flex items-center">
-            <span className="bg-green-500 rounded-full h-2 w-2 mr-2"></span>
+            <span className="bg-[#108E66] rounded-full h-2 w-2 mr-2"></span>
             <span>Verified Credentials</span>
           </div>
           <div className="flex items-center">
-            <span className="bg-green-500 rounded-full h-2 w-2 mr-2"></span>
+            <span className="bg-[#108E66] rounded-full h-2 w-2 mr-2"></span>
             <span>Transparent Fees</span>
           </div>
           <div className="flex items-center">
-            <span className="bg-green-500 rounded-full h-2 w-2 mr-2"></span>
+            <span className="bg-[#108E66] rounded-full h-2 w-2 mr-2"></span>
             <span>Fiduciary Standard</span>
           </div>
         </div>
