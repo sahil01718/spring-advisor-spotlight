@@ -64,7 +64,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ socialMedia }) => {
             href={social.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-600 hover:text-spring-purple transition-colors rounded-full border border-gray-200 bg-white p-2.5 hover:border-spring-purple"
+            className="text-gray-600 hover:text-green-600 transition-colors rounded-full border border-gray-200 bg-white p-2.5 hover:border-green-600"
             aria-label={`${social.type} link`}
           >
             {icon}

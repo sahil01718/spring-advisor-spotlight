@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Advisor } from '../data/advisors';
 
 interface ResultsHeaderProps {
   totalAdvisors: number;
@@ -16,7 +15,7 @@ const ResultsHeader: React.FC<ResultsHeaderProps> = ({ totalAdvisors, filteredAd
         <h2 className="text-2xl font-semibold">
           {isFiltered ? 'Filtered Results' : 'All Advisors'}
         </h2>
-        <p className="text-muted-foreground">
+        <p className="text-gray-500">
           {filteredAdvisorsCount === 0 
             ? 'No advisors match your criteria' 
             : `Showing ${filteredAdvisorsCount} ${filteredAdvisorsCount === 1 ? 'advisor' : 'advisors'}`}

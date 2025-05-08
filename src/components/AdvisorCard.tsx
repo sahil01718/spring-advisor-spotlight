@@ -1,11 +1,8 @@
 
 import React from 'react';
 import { Advisor } from '../data/advisors';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardFooter } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { MapPin, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { CheckCircle, MapPin } from 'lucide-react';
 
 interface AdvisorCardProps {
   advisor: Advisor;
@@ -18,9 +15,10 @@ const AdvisorCard: React.FC<AdvisorCardProps> = ({ advisor }) => {
   const displaySpecializations = specializations.slice(0, 3);
   
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 animate-fade-in h-full flex flex-col">
-      <CardHeader className="p-0 relative">
-        <div className="aspect-[3/2] overflow-hidden bg-secondary/10">
+    <div className="h-full flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white hover:shadow-lg transition-shadow duration-300 animate-fade-in">
+      {/* Card Header/Image */}
+      <div className="p-0 relative">
+        <div className="aspect-[3/2] overflow-hidden bg-gray-100">
           <img
             src={photo}
             alt={advisorName}
@@ -32,42 +30,45 @@ const AdvisorCard: React.FC<AdvisorCardProps> = ({ advisor }) => {
         </div>
         {verifiedBySpring && (
           <div className="absolute top-2 right-2 bg-white rounded-full p-1">
-            <Badge variant="outline" className="bg-spring-soft-green border-spring-green text-spring-green flex items-center gap-1 px-2">
-              <CheckCircle size={14} />
+            <div className="inline-flex items-center rounded-full border-transparent bg-green-50 border px-2.5 py-0.5 text-xs font-semibold text-green-600">
+              <CheckCircle size={14} className="mr-1" />
               <span>Verified</span>
-            </Badge>
+            </div>
           </div>
         )}
-      </CardHeader>
+      </div>
       
-      <CardContent className="p-4 flex-grow">
-        <div className="flex items-center gap-1 text-muted-foreground text-sm mb-2">
+      {/* Card Content */}
+      <div className="p-4 flex-grow">
+        <div className="flex items-center gap-1 text-gray-500 text-sm mb-2">
           <MapPin size={14} />
           <span>{location}</span>
         </div>
         
         <h3 className="font-semibold text-xl mb-1">{firmName}</h3>
-        <p className="text-sm text-muted-foreground mb-3">{advisorName}</p>
+        <p className="text-sm text-gray-500 mb-3">{advisorName}</p>
         
         <p className="text-sm mb-4 line-clamp-2">{tagline}</p>
         
         <div className="flex flex-wrap gap-2">
           {displaySpecializations.map((specialization) => (
-            <Badge key={specialization} variant="tag" className="font-normal">
+            <span key={specialization} className="inline-flex items-center rounded-full bg-green-500 px-2.5 py-0.5 text-xs font-semibold text-white">
               {specialization}
-            </Badge>
+            </span>
           ))}
         </div>
-      </CardContent>
+      </div>
       
-      <CardFooter className="p-4 pt-0 mt-auto">
-        <Button asChild variant="spring" className="w-full">
-          <Link to={`/advisor/${id}`}>
-            View Profile
-          </Link>
-        </Button>
-      </CardFooter>
-    </Card>
+      {/* Card Footer */}
+      <div className="p-4 pt-0 mt-auto">
+        <Link 
+          to={`/advisor/${id}`}
+          className="w-full flex justify-center items-center h-10 px-4 py-2 rounded-md bg-green-500 text-white font-medium hover:bg-green-600 transition-colors"
+        >
+          View Profile
+        </Link>
+      </div>
+    </div>
   );
 };
 
