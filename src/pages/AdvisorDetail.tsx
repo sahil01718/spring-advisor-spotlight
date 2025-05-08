@@ -38,6 +38,17 @@ const sampleBlogs: BlogPostType[] = [
   }
 ];
 
+// Define additional types for services, credentials and fee structures
+interface ServiceItem {
+  name: string;
+  description: string;
+}
+
+interface FeeItem {
+  service: string;
+  amount: string;
+}
+
 const AdvisorDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const advisor = mockAdvisors.find(a => a.id === id);
@@ -56,30 +67,34 @@ const AdvisorDetail: React.FC = () => {
     );
   }
 
-  // Placeholder email and phone since they might not exist in data
-  const email = advisor.email || "contact@example.com";
-  const phone = advisor.phone || "(555) 123-4567";
-  const address = advisor.address || `${advisor.location}, USA`;
+  // Access properties from the contactDetails object correctly
+  const email = advisor.contactDetails.email || "contact@example.com";
+  const phone = advisor.contactDetails.phone || "(555) 123-4567";
+  const address = advisor.location || "Location not specified";
   
-  // Placeholder for services and other missing properties
-  const services = advisor.services || [
-    { name: "Financial Planning", description: "Comprehensive financial planning for your future" },
-    { name: "Investment Management", description: "Strategic management of your investment portfolio" },
-    { name: "Retirement Planning", description: "Planning for a comfortable retirement" },
-    { name: "Tax Planning", description: "Minimize tax liability through strategic planning" }
-  ];
+  // Define default services based on the advisor's specializations
+  const services: ServiceItem[] = advisor.services.map(service => ({
+    name: service,
+    description: `Professional ${service} services tailored to your needs.`
+  })) || [];
   
-  const yearsExperience = advisor.yearsExperience || 10;
-  const philosophy = advisor.philosophy || "Our approach is centered around understanding your unique financial situation and goals.";
-  const approach = advisor.approach || "We believe in a personalized approach to financial planning.";
+  // Default values for properties not in Advisor type
+  const yearsExperience = 10; // Default value
+  const philosophy = advisor.about || "Our approach is centered around understanding your unique financial situation and goals.";
+  const approach = advisor.tagline || "We believe in a personalized approach to financial planning.";
   
-  const feeStructure = advisor.feeStructure || [
-    { service: "Financial Planning", amount: "$1,500 - $3,500" },
+  // Default fee structure based on specializations
+  const feeStructure: FeeItem[] = [
+    { service: "Financial Planning", amount: "₹15,000 - ₹35,000" },
     { service: "Investment Management", amount: "0.75% - 1.25% of AUM" },
-    { service: "Hourly Consultation", amount: "$250/hour" }
+    { service: "Hourly Consultation", amount: "₹2,500/hour" }
   ];
   
-  const credentials = advisor.credentials || ["Certified Financial Planner (CFP)", "Chartered Financial Analyst (CFA)"];
+  // Default credentials based on specializations
+  const credentials: string[] = [
+    "Certified Financial Planner (CFP)",
+    "SEBI Registered Investment Advisor"
+  ];
 
   return (
     <div className="bg-gray-50 min-h-screen pb-12">
@@ -143,20 +158,24 @@ const AdvisorDetail: React.FC = () => {
                   <Mail size={16} className="mr-2" />
                   Contact via Email
                 </a>
-                <a 
-                  href={`tel:${phone}`}
-                  className="inline-flex h-10 items-center justify-center rounded-md border border-[#108E66] bg-transparent px-4 font-medium text-[#108E66] hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-[#108E66] focus:ring-offset-2"
-                >
-                  <Phone size={16} className="mr-2" />
-                  Call Advisor
-                </a>
-                <a 
-                  href="#"
-                  className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-[#FCFFFE] px-4 font-medium text-[#272A2B] hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-                >
-                  <Calendar size={16} className="mr-2" />
-                  Schedule Meeting
-                </a>
+                {advisor.contactDetails.phone && (
+                  <a 
+                    href={`tel:${phone}`}
+                    className="inline-flex h-10 items-center justify-center rounded-md border border-[#108E66] bg-transparent px-4 font-medium text-[#108E66] hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-[#108E66] focus:ring-offset-2"
+                  >
+                    <Phone size={16} className="mr-2" />
+                    Call Advisor
+                  </a>
+                )}
+                {advisor.contactDetails.calendlyLink && (
+                  <a 
+                    href={advisor.contactDetails.calendlyLink}
+                    className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-[#FCFFFE] px-4 font-medium text-[#272A2B] hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                  >
+                    <Calendar size={16} className="mr-2" />
+                    Schedule Meeting
+                  </a>
+                )}
               </div>
             </div>
           </div>
@@ -270,15 +289,17 @@ const AdvisorDetail: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="flex items-start">
-                  <Phone className="w-5 h-5 text-[#108E66] mt-0.5 mr-3" />
-                  <div>
-                    <p className="text-sm text-gray-500">Phone</p>
-                    <a href={`tel:${phone}`} className="hover:underline text-[#272A2B]">
-                      {phone}
-                    </a>
+                {advisor.contactDetails.phone && (
+                  <div className="flex items-start">
+                    <Phone className="w-5 h-5 text-[#108E66] mt-0.5 mr-3" />
+                    <div>
+                      <p className="text-sm text-gray-500">Phone</p>
+                      <a href={`tel:${phone}`} className="hover:underline text-[#272A2B]">
+                        {phone}
+                      </a>
+                    </div>
                   </div>
-                </div>
+                )}
                 
                 <div className="flex items-start">
                   <MapPin className="w-5 h-5 text-[#108E66] mt-0.5 mr-3" />
