@@ -1,8 +1,11 @@
+
 import React, { useState, useEffect } from 'react';
 import AdvisorCard from '../components/AdvisorCard';
 import AdvisorFilters from '../components/AdvisorFilters';
 import HeroSection from '../components/HeroSection';
 import BenefitsGrid from '../components/BenefitsGrid';
+import PowerPlayCTA from '../components/PowerPlayCTA';
+import TestimonialsCarousel from '../components/TestimonialsCarousel';
 import ResultsHeader from '../components/ResultsHeader';
 import NoResults from '../components/NoResults';
 import { mockAdvisors, Advisor, Location, Specialization, AudienceType } from '../data/advisors';
@@ -48,6 +51,9 @@ const Marketplace: React.FC = () => {
       {/* Benefits Grid */}
       <BenefitsGrid />
       
+      {/* Power Play CTA Carousel */}
+      <PowerPlayCTA />
+      
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-12" id="advisorList">
         {/* Filters */}
@@ -77,6 +83,9 @@ const Marketplace: React.FC = () => {
           <NoResults />
         )}
       </div>
+      
+      {/* Testimonials Carousel */}
+      <TestimonialsCarousel />
     </div>
   );
 };
