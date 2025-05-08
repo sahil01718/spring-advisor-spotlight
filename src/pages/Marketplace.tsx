@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import AdvisorCard from '../components/AdvisorCard';
 import AdvisorFilters from '../components/AdvisorFilters';
 import HeroSection from '../components/HeroSection';
+import BenefitsGrid from '../components/BenefitsGrid';
 import ResultsHeader from '../components/ResultsHeader';
 import NoResults from '../components/NoResults';
 import { mockAdvisors, Advisor, Location, Specialization, AudienceType } from '../data/advisors';
@@ -44,6 +44,9 @@ const Marketplace: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <HeroSection />
+      
+      {/* Benefits Grid */}
+      <BenefitsGrid />
       
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-12" id="advisorList">
