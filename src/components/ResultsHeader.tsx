@@ -12,7 +12,7 @@ const ResultsHeader: React.FC<ResultsHeaderProps> = ({ totalAdvisors, filteredAd
   return (
     <div className="flex justify-between items-center mb-6">
       <div>
-        <h2 className="text-2xl font-semibold">
+        <h2 className="text-2xl font-semibold text-[#272A2B]">
           {isFiltered ? 'Filtered Results' : 'All Advisors'}
         </h2>
         <p className="text-gray-500">

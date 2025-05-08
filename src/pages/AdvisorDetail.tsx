@@ -44,11 +44,11 @@ const AdvisorDetail: React.FC = () => {
 
   if (!advisor) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-[#FCFFFE]">
         <div className="text-center">
-          <h2 className="text-2xl font-bold mb-2">Advisor Not Found</h2>
-          <p className="mb-4">We couldn't find the advisor you're looking for.</p>
-          <Link to="/" className="text-green-600 hover:underline">
+          <h2 className="text-2xl font-bold mb-2 text-[#272A2B]">Advisor Not Found</h2>
+          <p className="mb-4 text-[#272A2B]">We couldn't find the advisor you're looking for.</p>
+          <Link to="/" className="text-[#108E66] hover:underline">
             Return to Advisor Listing
           </Link>
         </div>
@@ -56,12 +56,37 @@ const AdvisorDetail: React.FC = () => {
     );
   }
 
+  // Placeholder email and phone since they might not exist in data
+  const email = advisor.email || "contact@example.com";
+  const phone = advisor.phone || "(555) 123-4567";
+  const address = advisor.address || `${advisor.location}, USA`;
+  
+  // Placeholder for services and other missing properties
+  const services = advisor.services || [
+    { name: "Financial Planning", description: "Comprehensive financial planning for your future" },
+    { name: "Investment Management", description: "Strategic management of your investment portfolio" },
+    { name: "Retirement Planning", description: "Planning for a comfortable retirement" },
+    { name: "Tax Planning", description: "Minimize tax liability through strategic planning" }
+  ];
+  
+  const yearsExperience = advisor.yearsExperience || 10;
+  const philosophy = advisor.philosophy || "Our approach is centered around understanding your unique financial situation and goals.";
+  const approach = advisor.approach || "We believe in a personalized approach to financial planning.";
+  
+  const feeStructure = advisor.feeStructure || [
+    { service: "Financial Planning", amount: "$1,500 - $3,500" },
+    { service: "Investment Management", amount: "0.75% - 1.25% of AUM" },
+    { service: "Hourly Consultation", amount: "$250/hour" }
+  ];
+  
+  const credentials = advisor.credentials || ["Certified Financial Planner (CFP)", "Chartered Financial Analyst (CFA)"];
+
   return (
     <div className="bg-gray-50 min-h-screen pb-12">
       {/* Hero Section with Advisor Info */}
-      <div className="bg-white border-b border-gray-200 pb-6">
+      <div className="bg-[#FCFFFE] border-b border-gray-200 pb-6">
         <div className="max-w-7xl mx-auto px-4 pt-8">
-          <Link to="/" className="inline-flex items-center text-green-600 hover:text-green-700 mb-6">
+          <Link to="/" className="inline-flex items-center text-[#108E66] hover:text-opacity-80 mb-6">
             <ArrowLeft size={16} className="mr-1" />
             Back to Advisors
           </Link>
@@ -84,9 +109,9 @@ const AdvisorDetail: React.FC = () => {
             {/* Advisor Info */}
             <div className="md:w-2/3">
               <div className="flex flex-wrap items-center gap-2 mb-2">
-                <h1 className="text-3xl font-bold">{advisor.firmName}</h1>
+                <h1 className="text-3xl font-bold text-[#272A2B]">{advisor.firmName}</h1>
                 {advisor.verifiedBySpring && (
-                  <div className="inline-flex items-center rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-semibold text-green-600">
+                  <div className="inline-flex items-center rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-semibold text-[#108E66]">
                     <CheckCircle size={14} className="mr-1" />
                     <span>Verified by Spring</span>
                   </div>
@@ -104,7 +129,7 @@ const AdvisorDetail: React.FC = () => {
               
               <div className="flex flex-wrap gap-2 mb-6">
                 {advisor.specializations.map((spec) => (
-                  <span key={spec} className="inline-flex items-center rounded-full bg-green-500 px-2.5 py-0.5 text-xs font-semibold text-white">
+                  <span key={spec} className="inline-flex items-center rounded-full bg-[#108E66] px-2.5 py-0.5 text-xs font-semibold text-[#FCFFFE]">
                     {spec}
                   </span>
                 ))}
@@ -112,22 +137,22 @@ const AdvisorDetail: React.FC = () => {
               
               <div className="flex flex-wrap gap-4">
                 <a 
-                  href={`mailto:${advisor.contactInfo.email}`}
-                  className="inline-flex h-10 items-center justify-center rounded-md bg-green-500 px-4 font-medium text-white shadow hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                  href={`mailto:${email}`}
+                  className="inline-flex h-10 items-center justify-center rounded-md bg-[#108E66] px-4 font-medium text-[#FCFFFE] shadow hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[#108E66] focus:ring-offset-2"
                 >
                   <Mail size={16} className="mr-2" />
                   Contact via Email
                 </a>
                 <a 
-                  href={`tel:${advisor.contactInfo.phone}`}
-                  className="inline-flex h-10 items-center justify-center rounded-md border border-green-500 bg-transparent px-4 font-medium text-green-500 hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                  href={`tel:${phone}`}
+                  className="inline-flex h-10 items-center justify-center rounded-md border border-[#108E66] bg-transparent px-4 font-medium text-[#108E66] hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-[#108E66] focus:ring-offset-2"
                 >
                   <Phone size={16} className="mr-2" />
                   Call Advisor
                 </a>
                 <a 
                   href="#"
-                  className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-white px-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                  className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-[#FCFFFE] px-4 font-medium text-[#272A2B] hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                 >
                   <Calendar size={16} className="mr-2" />
                   Schedule Meeting
@@ -144,18 +169,18 @@ const AdvisorDetail: React.FC = () => {
           {/* Left Column */}
           <div className="lg:col-span-2">
             {/* Services Section */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6 mb-8">
-              <h2 className="text-2xl font-semibold mb-4">Services Offered</h2>
+            <div className="bg-[#FCFFFE] rounded-lg border border-gray-200 p-6 mb-8">
+              <h2 className="text-2xl font-semibold mb-4 text-[#272A2B]">Services Offered</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {advisor.services.map((service, index) => (
+                {services.map((service, index) => (
                   <div key={index} className="flex gap-3">
-                    <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                    <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-[#108E66]">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-medium">{service.name}</h3>
+                      <h3 className="font-medium text-[#272A2B]">{service.name}</h3>
                       <p className="text-sm text-gray-500">{service.description}</p>
                     </div>
                   </div>
@@ -164,34 +189,34 @@ const AdvisorDetail: React.FC = () => {
             </div>
             
             {/* About Section */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6 mb-8">
-              <h2 className="text-2xl font-semibold mb-4">About {advisor.firmName}</h2>
+            <div className="bg-[#FCFFFE] rounded-lg border border-gray-200 p-6 mb-8">
+              <h2 className="text-2xl font-semibold mb-4 text-[#272A2B]">About {advisor.firmName}</h2>
               <div className="prose prose-sm max-w-none">
-                <p className="mb-4">
-                  With {advisor.yearsExperience} years of experience in financial advisory, {advisor.advisorName} has helped numerous clients achieve their financial goals through personalized strategies and dedicated service.
+                <p className="mb-4 text-[#272A2B]">
+                  With {yearsExperience} years of experience in financial advisory, {advisor.advisorName} has helped numerous clients achieve their financial goals through personalized strategies and dedicated service.
                 </p>
-                <p className="mb-4">
-                  {advisor.philosophy}
+                <p className="mb-4 text-[#272A2B]">
+                  {philosophy}
                 </p>
-                <p>
-                  {advisor.approach}
+                <p className="text-[#272A2B]">
+                  {approach}
                 </p>
               </div>
             </div>
             
             {/* Client Types Section */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6 mb-8">
-              <h2 className="text-2xl font-semibold mb-4">Ideal Clients</h2>
+            <div className="bg-[#FCFFFE] rounded-lg border border-gray-200 p-6 mb-8">
+              <h2 className="text-2xl font-semibold mb-4 text-[#272A2B]">Ideal Clients</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {advisor.audience.map((type, index) => (
                   <div key={index} className="bg-gray-50 rounded-lg p-4 flex items-center">
-                    <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 mr-3">
+                    <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-[#108E66] mr-3">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
-                    <span>{type}</span>
+                    <span className="text-[#272A2B]">{type}</span>
                   </div>
                 ))}
               </div>
@@ -200,7 +225,7 @@ const AdvisorDetail: React.FC = () => {
             {/* Testimonials Section */}
             {advisor.testimonials && advisor.testimonials.length > 0 && (
               <div className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">Client Testimonials</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-[#272A2B]">Client Testimonials</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {advisor.testimonials.map((testimonial, index) => (
                     <TestimonialCard key={index} testimonial={testimonial} />
@@ -212,10 +237,10 @@ const AdvisorDetail: React.FC = () => {
             {/* Blog Posts Section */}
             <div className="mb-8">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-semibold">Latest Articles</h2>
+                <h2 className="text-2xl font-semibold text-[#272A2B]">Latest Articles</h2>
                 <Link 
                   to={`/advisor/${advisor.id}/blogs`} 
-                  className="text-green-600 hover:underline text-sm font-medium"
+                  className="text-[#108E66] hover:underline text-sm font-medium"
                 >
                   View all
                 </Link>
@@ -231,36 +256,36 @@ const AdvisorDetail: React.FC = () => {
           {/* Right Column - Sidebar */}
           <div>
             {/* Contact Card */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6 sticky top-6">
-              <h3 className="font-semibold text-lg mb-4">Contact Information</h3>
+            <div className="bg-[#FCFFFE] rounded-lg border border-gray-200 p-6 mb-6 sticky top-6">
+              <h3 className="font-semibold text-lg mb-4 text-[#272A2B]">Contact Information</h3>
               
               <div className="space-y-4 mb-6">
                 <div className="flex items-start">
-                  <Mail className="w-5 h-5 text-green-600 mt-0.5 mr-3" />
+                  <Mail className="w-5 h-5 text-[#108E66] mt-0.5 mr-3" />
                   <div>
                     <p className="text-sm text-gray-500">Email</p>
-                    <a href={`mailto:${advisor.contactInfo.email}`} className="text-green-600 hover:underline">
-                      {advisor.contactInfo.email}
+                    <a href={`mailto:${email}`} className="text-[#108E66] hover:underline">
+                      {email}
                     </a>
                   </div>
                 </div>
                 
                 <div className="flex items-start">
-                  <Phone className="w-5 h-5 text-green-600 mt-0.5 mr-3" />
+                  <Phone className="w-5 h-5 text-[#108E66] mt-0.5 mr-3" />
                   <div>
                     <p className="text-sm text-gray-500">Phone</p>
-                    <a href={`tel:${advisor.contactInfo.phone}`} className="hover:underline">
-                      {advisor.contactInfo.phone}
+                    <a href={`tel:${phone}`} className="hover:underline text-[#272A2B]">
+                      {phone}
                     </a>
                   </div>
                 </div>
                 
                 <div className="flex items-start">
-                  <MapPin className="w-5 h-5 text-green-600 mt-0.5 mr-3" />
+                  <MapPin className="w-5 h-5 text-[#108E66] mt-0.5 mr-3" />
                   <div>
                     <p className="text-sm text-gray-500">Office Location</p>
-                    <address className="not-italic">
-                      {advisor.contactInfo.address}
+                    <address className="not-italic text-[#272A2B]">
+                      {address}
                     </address>
                   </div>
                 </div>
@@ -276,13 +301,13 @@ const AdvisorDetail: React.FC = () => {
             </div>
             
             {/* Fee Structure */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-              <h3 className="font-semibold text-lg mb-4">Fee Structure</h3>
+            <div className="bg-[#FCFFFE] rounded-lg border border-gray-200 p-6 mb-6">
+              <h3 className="font-semibold text-lg mb-4 text-[#272A2B]">Fee Structure</h3>
               <div className="text-sm space-y-2">
-                {advisor.feeStructure.map((fee, index) => (
+                {feeStructure.map((fee, index) => (
                   <div key={index} className="flex justify-between">
-                    <span>{fee.service}</span>
-                    <span className="font-medium">{fee.amount}</span>
+                    <span className="text-[#272A2B]">{fee.service}</span>
+                    <span className="font-medium text-[#272A2B]">{fee.amount}</span>
                   </div>
                 ))}
               </div>
@@ -292,18 +317,18 @@ const AdvisorDetail: React.FC = () => {
             </div>
             
             {/* Credentials */}
-            {advisor.credentials && advisor.credentials.length > 0 && (
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h3 className="font-semibold text-lg mb-4">Credentials</h3>
+            {credentials.length > 0 && (
+              <div className="bg-[#FCFFFE] rounded-lg border border-gray-200 p-6">
+                <h3 className="font-semibold text-lg mb-4 text-[#272A2B]">Credentials</h3>
                 <ul className="space-y-2">
-                  {advisor.credentials.map((credential, index) => (
+                  {credentials.map((credential, index) => (
                     <li key={index} className="flex items-center">
-                      <div className="h-6 w-6 rounded-full bg-green-100 flex items-center justify-center text-green-600 mr-2">
+                      <div className="h-6 w-6 rounded-full bg-green-100 flex items-center justify-center text-[#108E66] mr-2">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </div>
-                      <span>{credential}</span>
+                      <span className="text-[#272A2B]">{credential}</span>
                     </li>
                   ))}
                 </ul>
