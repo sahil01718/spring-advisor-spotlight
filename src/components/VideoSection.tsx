@@ -1,9 +1,15 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { ExternalLink } from 'lucide-react';
+import { Youtube } from 'lucide-react';
 
 const VideoSection: React.FC = () => {
+  const videoUrl = "https://youtu.be/0LTAmuIidsI?si=AO06qWaUgZfHD0ou";
+  
+  const openYoutubeVideo = () => {
+    window.open(videoUrl, '_blank');
+  };
+
   return (
     <div className="py-16 px-4 bg-[#FCFFFE]">
       <div className="max-w-7xl mx-auto">
@@ -11,13 +17,26 @@ const VideoSection: React.FC = () => {
         
         <div className="border border-gray-200 rounded-lg p-4 md:p-8 bg-white shadow-sm">
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-12">
-            {/* Video/Image Column */}
-            <div className="lg:w-1/2">
-              <img 
-                src="/lovable-uploads/f223bea3-ee17-4bbe-bc19-a6c82a7793c0.png" 
-                alt="CEO explaining financial planning" 
-                className="w-full h-auto rounded-lg shadow-md"
-              />
+            {/* Video Column */}
+            <div className="lg:w-1/2 relative">
+              <div className="rounded-lg overflow-hidden shadow-md relative group">
+                {/* YouTube Thumbnail with Play Button Overlay */}
+                <div className="aspect-w-16 aspect-h-9 relative">
+                  <img 
+                    src="/lovable-uploads/f223bea3-ee17-4bbe-bc19-a6c82a7793c0.png" 
+                    alt="CEO explaining financial planning" 
+                    className="w-full h-auto rounded-lg object-cover"
+                  />
+                  <div 
+                    className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300 cursor-pointer"
+                    onClick={openYoutubeVideo}
+                  >
+                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#108E66] flex items-center justify-center transition-transform group-hover:scale-110">
+                      <Youtube className="text-white w-8 h-8 md:w-10 md:h-10" />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             
             {/* Content Column */}
@@ -36,9 +55,10 @@ const VideoSection: React.FC = () => {
               <Button 
                 variant="outline" 
                 className="self-start border-[#108E66] text-[#108E66] hover:bg-[#108E66] hover:text-[#FCFFFE] transition-colors flex items-center gap-2"
+                onClick={openYoutubeVideo}
               >
                 Watch full video on Youtube
-                <ExternalLink size={16} />
+                <Youtube size={16} />
               </Button>
             </div>
           </div>
