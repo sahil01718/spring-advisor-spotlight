@@ -8,25 +8,33 @@ import {
   CarouselNext, 
   CarouselPrevious 
 } from '@/components/ui/carousel';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Briefcase, Globe, TrendingUp } from 'lucide-react';
 
 interface OfferSlideProps {
   title: string;
+  subtitle: string;
   description: string;
   ctaText: string;
   bgColor: string;
+  icon: React.ReactNode;
 }
 
 const OfferSlide: React.FC<OfferSlideProps> = ({ 
   title, 
+  subtitle,
   description, 
   ctaText, 
-  bgColor 
+  bgColor,
+  icon
 }) => {
   return (
     <div className={`h-full w-full rounded-lg p-8 ${bgColor} flex flex-col justify-between`}>
       <div>
-        <h3 className="text-2xl md:text-3xl font-bold text-[#FCFFFE] mb-3">{title}</h3>
+        <div className="text-[#FCFFFE] mb-4">
+          {icon}
+        </div>
+        <h3 className="text-xl md:text-2xl font-bold text-[#FCFFFE] mb-1">{title}</h3>
+        <h4 className="text-lg md:text-xl font-semibold text-[#FCFFFE]/90 mb-3">{subtitle}</h4>
         <p className="text-[#FCFFFE] opacity-90 mb-6 max-w-md">{description}</p>
       </div>
       <Button 
@@ -42,22 +50,28 @@ const OfferSlide: React.FC<OfferSlideProps> = ({
 const PowerPlayCTA: React.FC = () => {
   const offers = [
     {
-      title: "Free Financial Health Check",
-      description: "Get a comprehensive assessment of your current financial situation and personalized recommendations from our expert advisors.",
-      ctaText: "Book Now",
-      bgColor: "bg-gradient-to-r from-[#108E66] to-[#1aab80]"
-    },
-    {
-      title: "Retirement Planning Special",
-      description: "Limited time offer: Get a detailed retirement readiness report and consultation at 50% off our regular price.",
+      title: "Introducing EMPOWER",
+      subtitle: "Empower Your Workforce",
+      description: "Boost employee financial wellness and productivity with expert guidance and tailored tools.",
       ctaText: "Learn More",
-      bgColor: "bg-gradient-to-r from-[#108E66] to-[#1aab80]"
+      bgColor: "bg-gradient-to-r from-[#108E66] to-[#1aab80]",
+      icon: <Briefcase size={40} strokeWidth={1.5} />
     },
     {
-      title: "Investment Portfolio Review",
-      description: "Have our experts analyze your current investments and identify opportunities to maximize your returns.",
+      title: "Introducing NRICH",
+      subtitle: "NRI Financial Solutions",
+      description: "Seamlessly manage your finances across borders with expert guidance and specialized tools.",
       ctaText: "Get Started",
-      bgColor: "bg-gradient-to-r from-[#108E66] to-[#1aab80]"
+      bgColor: "bg-gradient-to-r from-[#108E66] to-[#1aab80]",
+      icon: <Globe size={40} strokeWidth={1.5} />
+    },
+    {
+      title: "Introducing POWER PLAY",
+      subtitle: "Empowering Young Professionals",
+      description: "Build a solid financial future with expert guidance from the start.",
+      ctaText: "Discover More",
+      bgColor: "bg-gradient-to-r from-[#108E66] to-[#1aab80]",
+      icon: <TrendingUp size={40} strokeWidth={1.5} />
     }
   ];
 
@@ -67,7 +81,7 @@ const PowerPlayCTA: React.FC = () => {
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-[#272A2B] mb-3">Special Offers</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Take advantage of these limited-time opportunities to enhance your financial future
+            Take advantage of these specialized services to enhance your financial future
           </p>
         </div>
         
@@ -81,12 +95,14 @@ const PowerPlayCTA: React.FC = () => {
           >
             <CarouselContent>
               {offers.map((offer, index) => (
-                <CarouselItem key={index} className="md:basis-3/4 lg:basis-2/3 h-[300px]">
+                <CarouselItem key={index} className="md:basis-3/4 lg:basis-2/3 h-[320px]">
                   <OfferSlide
                     title={offer.title}
+                    subtitle={offer.subtitle}
                     description={offer.description}
                     ctaText={offer.ctaText}
                     bgColor={offer.bgColor}
+                    icon={offer.icon}
                   />
                 </CarouselItem>
               ))}

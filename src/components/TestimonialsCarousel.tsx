@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Carousel, 
   CarouselContent, 
@@ -8,6 +8,7 @@ import {
   CarouselPrevious 
 } from '@/components/ui/carousel';
 import TestimonialCard from './TestimonialCard';
+import useEmblaCarousel from 'embla-carousel-react';
 
 const TestimonialsCarousel: React.FC = () => {
   const testimonials = [
@@ -38,6 +39,17 @@ const TestimonialsCarousel: React.FC = () => {
     }
   ];
 
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+
+  React.useEffect(() => {
+    if (emblaApi) {
+      emblaApi.on('select', () => {
+        setActiveIndex(emblaApi.selectedScrollSnap());
+      });
+    }
+  }, [emblaApi]);
+
   return (
     <div className="py-16 px-4 bg-[#f9f9f9]">
       <div className="max-w-7xl mx-auto">
@@ -49,6 +61,7 @@ const TestimonialsCarousel: React.FC = () => {
         </div>
         
         <Carousel
+          ref={emblaRef}
           opts={{
             align: "start",
             loop: true,
@@ -66,6 +79,21 @@ const TestimonialsCarousel: React.FC = () => {
           </CarouselContent>
           <div className="flex justify-center gap-2 mt-8">
             <CarouselPrevious className="static transform-none" />
+            
+            {/* Pagination Dots */}
+            <div className="flex items-center gap-2 mx-4">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  className={`h-2 rounded-full transition-all ${
+                    index === activeIndex ? "w-6 bg-[#108E66]" : "w-2 bg-gray-300"
+                  }`}
+                  onClick={() => emblaApi && emblaApi.scrollTo(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+            
             <CarouselNext className="static transform-none" />
           </div>
         </Carousel>

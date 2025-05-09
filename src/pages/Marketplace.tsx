@@ -5,6 +5,7 @@ import AdvisorFilters from '../components/AdvisorFilters';
 import HeroSection from '../components/HeroSection';
 import BenefitsGrid from '../components/BenefitsGrid';
 import PowerPlayCTA from '../components/PowerPlayCTA';
+import VideoSection from '../components/VideoSection';
 import TestimonialsCarousel from '../components/TestimonialsCarousel';
 import ResultsHeader from '../components/ResultsHeader';
 import NoResults from '../components/NoResults';
@@ -50,6 +51,9 @@ const Marketplace: React.FC = () => {
       
       {/* Benefits Grid */}
       <BenefitsGrid />
+      
+      {/* Video Section */}
+      <VideoSection />
       
       {/* Power Play CTA Carousel */}
       <PowerPlayCTA />
