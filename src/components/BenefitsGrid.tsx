@@ -1,29 +1,26 @@
 
 import React from 'react';
 import { 
-  TrendingUp,
-  Calculator,
   ShieldCheck,
-  Landmark
+  TrendingUp,
+  HandHeart,
+  CalendarCheck
 } from 'lucide-react';
 
 interface BenefitCardProps {
   title: string;
   description: string;
   icon: React.ReactNode;
-  image: string;
 }
 
-const BenefitCard: React.FC<BenefitCardProps> = ({ title, description, icon, image }) => {
+const BenefitCard: React.FC<BenefitCardProps> = ({ title, description, icon }) => {
   return (
-    <div className="border border-gray-200 rounded-lg p-6 bg-white hover:shadow-lg transition-all duration-300">
-      <div className="flex flex-col gap-4">
-        <div className="flex justify-center">
-          <img src={image} alt={title} className="h-48 object-contain" />
-        </div>
-        <h3 className="text-xl font-semibold text-center text-gray-800">{title}</h3>
-        <p className="text-gray-600 text-center">{description}</p>
+    <div className="bg-[#FCFFFE] p-6 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col">
+      <div className="text-[#108E66] mb-4 flex justify-center">
+        {icon}
       </div>
+      <h3 className="text-xl font-semibold mb-3 text-[#272A2B] text-center">{title}</h3>
+      <p className="text-gray-600 text-center flex-grow">{description}</p>
     </div>
   );
 };
@@ -31,36 +28,35 @@ const BenefitCard: React.FC<BenefitCardProps> = ({ title, description, icon, ima
 const BenefitsGrid: React.FC = () => {
   const benefits = [
     {
-      title: "Build Wealth & Secure Your Future",
-      description: "Personalized strategies for growth and retirement.",
-      icon: <TrendingUp size={48} strokeWidth={1.5} className="text-[#0B8A59]" />,
-      image: "/lovable-uploads/eb0e214c-0e4f-4086-b51a-f3aa0c36dff2.png"
-    },
-    {
-      title: "Maximize Returns, Minimize Taxes",
-      description: "Expert investment strategies across diverse assets.",
-      icon: <Calculator size={48} strokeWidth={1.5} className="text-[#0B8A59]" />,
-      image: "/lovable-uploads/eb0e214c-0e4f-4086-b51a-f3aa0c36dff2.png"
+      title: "Maximize Your Returns",
+      description: "Our advisors use proven strategies to help you get the most out of your investments with personalized portfolio management.",
+      icon: <TrendingUp size={48} strokeWidth={1.5} />
     },
     {
       title: "Protect Your Future",
-      description: "Tailored insurance planning for you, your family and your assets.",
-      icon: <ShieldCheck size={48} strokeWidth={1.5} className="text-[#0B8A59]" />,
-      image: "/lovable-uploads/eb0e214c-0e4f-4086-b51a-f3aa0c36dff2.png"
+      description: "Comprehensive risk assessment and management to safeguard your assets and ensure long-term security.",
+      icon: <ShieldCheck size={48} strokeWidth={1.5} />
     },
     {
-      title: "Secure Your Legacy",
-      description: "Plan your estate and ensure a smooth wealth transfer.",
-      icon: <Landmark size={48} strokeWidth={1.5} className="text-[#0B8A59]" />,
-      image: "/lovable-uploads/eb0e214c-0e4f-4086-b51a-f3aa0c36dff2.png"
+      title: "Achieve Financial Freedom",
+      description: "Tailored roadmaps to help you meet your life goals and secure the financial independence you deserve.",
+      icon: <HandHeart size={48} strokeWidth={1.5} />
+    },
+    {
+      title: "Comprehensive Planning",
+      description: "Holistic financial planning that addresses all aspects of your financial life, from investments to retirement.",
+      icon: <CalendarCheck size={48} strokeWidth={1.5} />
     }
   ];
 
   return (
-    <div className="py-16 px-4 bg-gray-50">
+    <div className="py-16 px-4 bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Expertise, Your Financial Success</h2>
+          <h2 className="text-3xl font-bold text-[#272A2B] mb-4">Why Choose Spring Money Advisors?</h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Our platform connects you with verified advisors who provide expert financial guidance tailored to your unique needs.
+          </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -70,7 +66,6 @@ const BenefitsGrid: React.FC = () => {
               title={benefit.title}
               description={benefit.description}
               icon={benefit.icon}
-              image={benefit.image}
             />
           ))}
         </div>

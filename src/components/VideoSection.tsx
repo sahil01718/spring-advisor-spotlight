@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Play, Youtube } from 'lucide-react';
+import { Youtube } from 'lucide-react';
 
 const VideoSection: React.FC = () => {
   const videoUrl = "https://youtu.be/0LTAmuIidsI?si=AO06qWaUgZfHD0ou";
@@ -13,7 +13,7 @@ const VideoSection: React.FC = () => {
   return (
     <div className="py-16 px-4 bg-[#FCFFFE]">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#0B8A59] text-center mb-12">How it works?</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-[#108E66] text-center mb-12">How it works?</h2>
         
         <div className="border border-gray-200 rounded-lg p-4 md:p-8 bg-white shadow-sm">
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-12">
@@ -31,8 +31,8 @@ const VideoSection: React.FC = () => {
                     className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300 cursor-pointer"
                     onClick={openYoutubeVideo}
                   >
-                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#0B8A59] flex items-center justify-center transition-transform group-hover:scale-110">
-                      <Play className="text-white w-8 h-8 md:w-10 md:h-10 ml-1" />
+                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#108E66] flex items-center justify-center transition-transform group-hover:scale-110">
+                      <Youtube className="text-white w-8 h-8 md:w-10 md:h-10" />
                     </div>
                   </div>
                 </div>
@@ -54,7 +54,7 @@ const VideoSection: React.FC = () => {
               
               <Button 
                 variant="outline" 
-                className="self-start border-[#0B8A59] text-[#0B8A59] hover:bg-[#0B8A59] hover:text-[#FCFFFE] transition-colors flex items-center gap-2"
+                className="self-start border-[#108E66] text-[#108E66] hover:bg-[#108E66] hover:text-[#FCFFFE] transition-colors flex items-center gap-2"
                 onClick={openYoutubeVideo}
               >
                 Watch full video on Youtube

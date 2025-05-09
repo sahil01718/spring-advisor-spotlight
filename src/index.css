@@ -16,10 +16,10 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 159 85% 30%;  /* Updated Spring green */
+    --primary: 152 80% 31%;  /* Spring green */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 159 85% 30%; /* Changed from purple to green */
+    --secondary: 152 80% 31%; /* Changed from purple to green */
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
@@ -102,22 +102,4 @@
 
 .bg-pattern {
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-
-/* Custom Spring Money styles */
-.spring-green {
-  color: #0B8A59;
-}
-
-.bg-spring-green {
-  background-color: #0B8A59;
-}
-
-.border-spring-green {
-  border-color: #0B8A59;
-}
-
-.hover-spring-green:hover {
-  background-color: #0B8A59;
-  color: white;
 }
