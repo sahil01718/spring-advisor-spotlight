@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Testimonial } from '../data/advisors';
-import { Card, CardContent, CardHeader, CardFooter } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 
 interface TestimonialCardProps {
   testimonial: Testimonial;

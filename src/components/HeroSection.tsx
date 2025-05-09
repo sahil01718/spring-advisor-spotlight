@@ -14,18 +14,18 @@ const HeroSection: React.FC = () => {
             Browse SEBI-Registered Investment Advisors curated by Spring Money
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link 
-              to="/onboarding"
-              className="inline-flex h-11 items-center justify-center rounded-md bg-[#108E66] px-8 font-medium text-[#FCFFFE] shadow hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[#108E66] focus:ring-offset-2"
-            >
-              List Your Practice
-            </Link>
             <a 
               href="#advisorList"
-              className="inline-flex h-11 items-center justify-center rounded-md border border-[#108E66] bg-transparent px-8 font-medium text-[#108E66] hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-[#108E66] focus:ring-offset-2"
+              className="inline-flex h-11 items-center justify-center rounded-md bg-[#108E66] px-8 font-medium text-[#FCFFFE] shadow hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[#108E66] focus:ring-offset-2"
             >
               Browse Advisors
             </a>
+            <Link 
+              to="/onboarding"
+              className="inline-flex h-11 items-center justify-center rounded-md border border-[#108E66] bg-transparent px-8 font-medium text-[#108E66] hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-[#108E66] focus:ring-offset-2"
+            >
+              List Your Practice
+            </Link>
           </div>
         </div>
         

@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Carousel, 
   CarouselContent, 
@@ -11,6 +11,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Youtube } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import useEmblaCarousel from 'embla-carousel-react';
+import TestimonialCard from './TestimonialCard';
+import { Testimonial } from '../data/advisors';
 
 interface VideoTestimonial {
   id: string;
@@ -31,7 +33,7 @@ const TestimonialsCarousel: React.FC = () => {
       author: "Vijit Nima",
       role: "Technology Professional",
       videoUrl: "https://www.youtube.com/watch?v=example1",
-      thumbnailUrl: "/lovable-uploads/ee39fa69-9ea2-464e-af3c-50fc4b35cad4.png"
+      thumbnailUrl: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2080&auto=format&fit=crop"
     },
     {
       id: "2",
@@ -40,7 +42,7 @@ const TestimonialsCarousel: React.FC = () => {
       author: "Sandip Mahajan",
       role: "Business Owner",
       videoUrl: "https://www.youtube.com/watch?v=example2",
-      thumbnailUrl: "/lovable-uploads/ee39fa69-9ea2-464e-af3c-50fc4b35cad4.png"
+      thumbnailUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2149&auto=format&fit=crop"
     },
     {
       id: "3",
@@ -49,11 +51,74 @@ const TestimonialsCarousel: React.FC = () => {
       author: "Abhi Kasturi",
       role: "Healthcare Professional",
       videoUrl: "https://www.youtube.com/watch?v=example3",
-      thumbnailUrl: "/lovable-uploads/ee39fa69-9ea2-464e-af3c-50fc4b35cad4.png"
+      thumbnailUrl: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=1974&auto=format&fit=crop"
+    },
+    {
+      id: "4",
+      title: "Retirement Planning Made Simple",
+      description: "Securing Your Future with Expert Guidance.",
+      author: "Priya Sharma",
+      role: "Education Professional",
+      videoUrl: "https://www.youtube.com/watch?v=example4",
+      thumbnailUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2076&auto=format&fit=crop"
+    },
+    {
+      id: "5",
+      title: "Financial Independence Journey",
+      description: "From Debt to Freedom: My Financial Transformation.",
+      author: "Rahul Kapoor",
+      role: "Marketing Executive",
+      videoUrl: "https://www.youtube.com/watch?v=example5",
+      thumbnailUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop"
+    },
+    {
+      id: "6",
+      title: "Tax Optimization Strategies That Work",
+      description: "Legal Ways to Minimize Tax Burden and Maximize Wealth.",
+      author: "Anjali Desai",
+      role: "Financial Consultant",
+      videoUrl: "https://www.youtube.com/watch?v=example6",
+      thumbnailUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop"
+    },
+    {
+      id: "7",
+      title: "Building Wealth Through Market Cycles",
+      description: "Staying Calm During Market Turbulence for Long-Term Growth.",
+      author: "Aarav Patel",
+      role: "IT Director",
+      videoUrl: "https://www.youtube.com/watch?v=example7",
+      thumbnailUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1974&auto=format&fit=crop"
+    },
+    {
+      id: "8",
+      title: "Family Financial Planning",
+      description: "Creating a Secure Future for Your Children and Beyond.",
+      author: "Meera Verma",
+      role: "Healthcare Administrator",
+      videoUrl: "https://www.youtube.com/watch?v=example8",
+      thumbnailUrl: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      id: "9",
+      title: "From Confusion to Clarity",
+      description: "How a Financial Advisor Changed My Investment Approach.",
+      author: "Kiran Singh",
+      role: "Entrepreneur",
+      videoUrl: "https://www.youtube.com/watch?v=example9",
+      thumbnailUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop"
+    },
+    {
+      id: "10",
+      title: "Early Retirement Success Story",
+      description: "How Smart Planning Let Me Retire at 45.",
+      author: "Vikram Khanna",
+      role: "Early Retiree",
+      videoUrl: "https://www.youtube.com/watch?v=example10",
+      thumbnailUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop"
     }
   ];
 
-  const textTestimonials = [
+  const textTestimonials: Testimonial[] = [
     {
       text: "Working with Spring Money changed my financial future. My advisor helped me create a solid retirement plan and optimize my investments. I've seen a 15% increase in my portfolio over the last year alone!",
       author: "Michael Thompson",
@@ -78,20 +143,84 @@ const TestimonialsCarousel: React.FC = () => {
       text: "Spring Money advisors excel at explaining complex financial concepts in understandable terms. I finally feel in control of my finances and have a clear path toward my goals.",
       author: "Robert Jackson",
       designation: "Technology Consultant"
+    },
+    {
+      text: "After working with my Spring Money advisor, I've doubled my savings rate without feeling deprived. Their practical approach to budgeting has been transformative for my family.",
+      author: "Emma Watson",
+      designation: "Project Manager"
+    },
+    {
+      text: "My advisor's strategic approach to debt management helped me eliminate $50,000 in high-interest debt in just two years. Now I'm building wealth instead of paying interest.",
+      author: "James Wilson",
+      designation: "Sales Director"
+    },
+    {
+      text: "As someone who always found investing intimidating, I appreciate how my Spring Money advisor makes complex concepts accessible and builds my confidence in financial decision-making.",
+      author: "Sophia Garcia",
+      designation: "Creative Director"
+    },
+    {
+      text: "My family's multi-generational wealth plan gives me peace of mind about our future. Spring Money's comprehensive approach addresses every aspect of our financial life.",
+      author: "Daniel Lee",
+      designation: "Business Consultant"
+    },
+    {
+      text: "Working with Spring Money helped me align my investments with my values without sacrificing returns. ESG investing with expert guidance has been rewarding both financially and personally.",
+      author: "Olivia Martinez",
+      designation: "Environmental Scientist"
     }
   ];
 
   const [activeTab, setActiveTab] = useState<'video' | 'text'>('video');
   const [activeIndex, setActiveIndex] = useState(0);
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true,
+    dragFree: true,
+    watchDrag: false
+  });
+  const [emblaRefText, emblaApiText] = useEmblaCarousel({
+    loop: true,
+    dragFree: true,
+    watchDrag: false
+  });
 
-  React.useEffect(() => {
+  // Auto-scroll for video testimonials
+  useEffect(() => {
+    if (emblaApi && activeTab === 'video') {
+      const autoScrollInterval = setInterval(() => {
+        emblaApi.scrollNext();
+      }, 5000);
+      
+      return () => clearInterval(autoScrollInterval);
+    }
+  }, [emblaApi, activeTab]);
+
+  // Auto-scroll for text testimonials
+  useEffect(() => {
+    if (emblaApiText && activeTab === 'text') {
+      const autoScrollInterval = setInterval(() => {
+        emblaApiText.scrollNext();
+      }, 5000);
+      
+      return () => clearInterval(autoScrollInterval);
+    }
+  }, [emblaApiText, activeTab]);
+
+  useEffect(() => {
     if (emblaApi) {
       emblaApi.on('select', () => {
         setActiveIndex(emblaApi.selectedScrollSnap());
       });
     }
   }, [emblaApi]);
+
+  useEffect(() => {
+    if (emblaApiText) {
+      emblaApiText.on('select', () => {
+        setActiveIndex(emblaApiText.selectedScrollSnap());
+      });
+    }
+  }, [emblaApiText]);
 
   const openVideoUrl = (url: string) => {
     window.open(url, '_blank');
@@ -138,7 +267,7 @@ const TestimonialsCarousel: React.FC = () => {
         {/* Video Testimonials */}
         {activeTab === 'video' && (
           <div className="relative px-4">
-            <Carousel className="w-full">
+            <Carousel ref={emblaRef} className="w-full">
               <CarouselContent>
                 {videoTestimonials.map((testimonial) => (
                   <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/3 pl-4">
@@ -213,7 +342,7 @@ const TestimonialsCarousel: React.FC = () => {
         {/* Text Testimonials */}
         {activeTab === 'text' && (
           <Carousel
-            ref={emblaRef}
+            ref={emblaRefText}
             opts={{
               align: "start",
               loop: true,
@@ -223,27 +352,7 @@ const TestimonialsCarousel: React.FC = () => {
             <CarouselContent>
               {textTestimonials.map((testimonial, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-4">
-                  <div className="h-full">
-                    <div className="h-full rounded-lg border border-gray-200 bg-[#FCFFFE] shadow-sm">
-                      <div className="p-6">
-                        <div className="text-[#108E66] mb-4">
-                          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9.13456 8H13.1346L10.1346 16H6.13456L9.13456 8Z" fill="currentColor"/>
-                            <path d="M17.1346 8H21.1346L18.1346 16H14.1346L17.1346 8Z" fill="currentColor"/>
-                          </svg>
-                        </div>
-                        <blockquote className="mb-6 italic text-[#272A2B]">
-                          "{testimonial.text}"
-                        </blockquote>
-                        <div>
-                          <p className="font-medium text-[#272A2B]">{testimonial.author}</p>
-                          {testimonial.designation && (
-                            <p className="text-sm text-gray-500">{testimonial.designation}</p>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <TestimonialCard testimonial={testimonial} />
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -258,7 +367,7 @@ const TestimonialsCarousel: React.FC = () => {
                     className={`h-2 rounded-full transition-all ${
                       activeTab === 'text' && index === activeIndex ? "w-6 bg-[#108E66]" : "w-2 bg-gray-300"
                     }`}
-                    onClick={() => emblaApi && emblaApi.scrollTo(index)}
+                    onClick={() => emblaApiText && emblaApiText.scrollTo(index)}
                     aria-label={`Go to slide ${index + 1}`}
                   />
                 ))}
