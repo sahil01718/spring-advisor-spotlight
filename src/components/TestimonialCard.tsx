@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Testimonial } from '../data/advisors';
+import { Card, CardContent, CardHeader, CardFooter } from '@/components/ui/card';
 
 interface TestimonialCardProps {
   testimonial: Testimonial;
@@ -8,8 +9,8 @@ interface TestimonialCardProps {
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial }) => {
   return (
-    <div className="h-full rounded-lg border border-gray-200 bg-[#FCFFFE] shadow-sm">
-      <div className="p-6">
+    <Card className="h-full border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300">
+      <CardContent className="p-6">
         <div className="text-[#108E66] mb-4">
           <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9.13456 8H13.1346L10.1346 16H6.13456L9.13456 8Z" fill="currentColor"/>
@@ -25,8 +26,8 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial }) => {
             <p className="text-sm text-gray-500">{testimonial.designation}</p>
           )}
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 

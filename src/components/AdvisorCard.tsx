@@ -3,6 +3,7 @@ import React from 'react';
 import { Advisor } from '../data/advisors';
 import { Link } from 'react-router-dom';
 import { CheckCircle, MapPin } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardFooter } from '@/components/ui/card';
 
 interface AdvisorCardProps {
   advisor: Advisor;
@@ -15,7 +16,7 @@ const AdvisorCard: React.FC<AdvisorCardProps> = ({ advisor }) => {
   const displaySpecializations = specializations.slice(0, 3);
   
   return (
-    <div className="h-full flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-[#FCFFFE] hover:shadow-lg transition-shadow duration-300 animate-fade-in">
+    <Card className="h-full flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300 animate-fade-in">
       {/* Card Header/Image */}
       <div className="p-0 relative">
         <div className="aspect-[3/2] overflow-hidden bg-gray-100">
@@ -39,7 +40,7 @@ const AdvisorCard: React.FC<AdvisorCardProps> = ({ advisor }) => {
       </div>
       
       {/* Card Content */}
-      <div className="p-4 flex-grow">
+      <CardContent className="p-4 flex-grow">
         <div className="flex items-center gap-1 text-gray-500 text-sm mb-2">
           <MapPin size={14} />
           <span>{location}</span>
@@ -57,18 +58,18 @@ const AdvisorCard: React.FC<AdvisorCardProps> = ({ advisor }) => {
             </span>
           ))}
         </div>
-      </div>
+      </CardContent>
       
       {/* Card Footer */}
-      <div className="p-4 pt-0 mt-auto">
+      <CardFooter className="p-4 pt-0">
         <Link 
           to={`/advisor/${id}`}
           className="w-full flex justify-center items-center h-10 px-4 py-2 rounded-md bg-[#108E66] text-[#FCFFFE] font-medium hover:bg-opacity-90 transition-colors"
         >
           View Profile
         </Link>
-      </div>
-    </div>
+      </CardFooter>
+    </Card>
   );
 };
 

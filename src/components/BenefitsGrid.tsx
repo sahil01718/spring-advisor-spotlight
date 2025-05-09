@@ -6,6 +6,7 @@ import {
   HandHeart,
   CalendarCheck
 } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface BenefitCardProps {
   title: string;
@@ -15,13 +16,17 @@ interface BenefitCardProps {
 
 const BenefitCard: React.FC<BenefitCardProps> = ({ title, description, icon }) => {
   return (
-    <div className="bg-[#FCFFFE] p-6 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col">
-      <div className="text-[#108E66] mb-4 flex justify-center">
-        {icon}
-      </div>
-      <h3 className="text-xl font-semibold mb-3 text-[#272A2B] text-center">{title}</h3>
-      <p className="text-gray-600 text-center flex-grow">{description}</p>
-    </div>
+    <Card className="border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:translate-y-[-5px] h-full overflow-hidden">
+      <CardHeader className="pb-2">
+        <div className="text-[#108E66] flex justify-center mb-2">
+          {icon}
+        </div>
+        <CardTitle className="text-xl text-center text-[#272A2B]">{title}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="text-gray-600 text-center">{description}</p>
+      </CardContent>
+    </Card>
   );
 };
 
