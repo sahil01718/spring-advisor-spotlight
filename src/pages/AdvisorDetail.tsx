@@ -1,12 +1,13 @@
 
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, MapPin, CheckCircle, Mail, Phone, Calendar } from 'lucide-react';
+import { ArrowLeft, MapPin, CheckCircle, Mail, Phone, Calendar, Video } from 'lucide-react';
 import { mockAdvisors, Advisor } from '../data/advisors';
 import SocialLinks from '../components/SocialLinks';
 import TestimonialCard from '../components/TestimonialCard';
 import BlogPost, { BlogPostType } from '../components/BlogPost';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 // Sample blog posts data
 const sampleBlogs: BlogPostType[] = [
@@ -60,7 +61,7 @@ const AdvisorDetail: React.FC = () => {
         <div className="text-center">
           <h2 className="text-2xl font-bold mb-2 text-[#272A2B]">Advisor Not Found</h2>
           <p className="mb-4 text-[#272A2B]">We couldn't find the advisor you're looking for.</p>
-          <Link to="/" className="text-[#108E66] hover:underline">
+          <Link to="/" className="text-spring-green hover:underline">
             Return to Advisor Listing
           </Link>
         </div>
@@ -97,12 +98,17 @@ const AdvisorDetail: React.FC = () => {
     "SEBI Registered Investment Advisor"
   ];
 
+  // Sample advisor video URL (YouTube embed)
+  const advisorVideo = advisor.id === "1" ? "https://www.youtube.com/embed/JWcG7FCQu1w" : 
+                      advisor.id === "2" ? "https://www.youtube.com/embed/TvnX-xEjQYk" : 
+                      null;
+
   return (
     <div className="bg-gray-50 min-h-screen pb-12">
       {/* Hero Section with Advisor Info */}
       <div className="bg-[#FCFFFE] border-b border-gray-200 pb-6">
         <div className="max-w-7xl mx-auto px-4 pt-8">
-          <Link to="/" className="inline-flex items-center text-[#108E66] hover:text-opacity-80 mb-6">
+          <Link to="/" className="inline-flex items-center text-spring-green hover:text-opacity-80 mb-6">
             <ArrowLeft size={16} className="mr-1" />
             Back to Advisors
           </Link>
@@ -129,7 +135,7 @@ const AdvisorDetail: React.FC = () => {
                   <div className="flex flex-wrap items-center gap-2 mb-2">
                     <h1 className="text-3xl font-bold text-[#272A2B]">{advisor.firmName}</h1>
                     {advisor.verifiedBySpring && (
-                      <div className="inline-flex items-center rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-semibold text-[#108E66]">
+                      <div className="inline-flex items-center rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-semibold text-spring-green">
                         <CheckCircle size={14} className="mr-1" />
                         <span>Verified by Spring</span>
                       </div>
@@ -147,7 +153,7 @@ const AdvisorDetail: React.FC = () => {
                   
                   <div className="flex flex-wrap gap-2 mb-6">
                     {advisor.specializations.map((spec) => (
-                      <span key={spec} className="inline-flex items-center rounded-full bg-[#108E66] px-2.5 py-0.5 text-xs font-semibold text-[#FCFFFE]">
+                      <span key={spec} className="inline-flex items-center rounded-full bg-spring-green px-2.5 py-0.5 text-xs font-semibold text-[#FCFFFE]">
                         {spec}
                       </span>
                     ))}
@@ -156,7 +162,7 @@ const AdvisorDetail: React.FC = () => {
                   <div className="flex flex-wrap gap-4">
                     <a 
                       href={`mailto:${email}`}
-                      className="inline-flex h-10 items-center justify-center rounded-md bg-[#108E66] px-4 font-medium text-[#FCFFFE] shadow hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[#108E66] focus:ring-offset-2"
+                      className="inline-flex h-10 items-center justify-center rounded-md bg-spring-green px-4 font-medium text-[#FCFFFE] shadow hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[#108E66] focus:ring-offset-2"
                     >
                       <Mail size={16} className="mr-2" />
                       Contact via Email
@@ -164,7 +170,7 @@ const AdvisorDetail: React.FC = () => {
                     {advisor.contactDetails.phone && (
                       <a 
                         href={`tel:${phone}`}
-                        className="inline-flex h-10 items-center justify-center rounded-md border border-[#108E66] bg-transparent px-4 font-medium text-[#108E66] hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-[#108E66] focus:ring-offset-2"
+                        className="inline-flex h-10 items-center justify-center rounded-md border border-spring-green bg-transparent px-4 font-medium text-spring-green hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-[#108E66] focus:ring-offset-2"
                       >
                         <Phone size={16} className="mr-2" />
                         Call Advisor
@@ -173,6 +179,8 @@ const AdvisorDetail: React.FC = () => {
                     {advisor.contactDetails.calendlyLink && (
                       <a 
                         href={advisor.contactDetails.calendlyLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-[#FCFFFE] px-4 font-medium text-[#272A2B] hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                       >
                         <Calendar size={16} className="mr-2" />
@@ -192,16 +200,44 @@ const AdvisorDetail: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Column */}
           <div className="lg:col-span-2">
+            {/* Advisor Video (if available) */}
+            {advisorVideo && (
+              <Card className="mb-8 overflow-hidden">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center text-2xl font-semibold text-[#272A2B]">
+                    <Video size={24} className="mr-2 text-spring-green" />
+                    Meet {advisor.advisorName}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="w-full overflow-hidden rounded-md">
+                    <AspectRatio ratio={16/9}>
+                      <iframe 
+                        width="100%" 
+                        height="100%" 
+                        src={advisorVideo}
+                        title={`${advisor.advisorName} introduction video`}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="object-cover"
+                      ></iframe>
+                    </AspectRatio>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+            
             {/* Services Section */}
             <Card className="mb-8">
               <CardHeader className="pb-2">
                 <CardTitle className="text-2xl font-semibold text-[#272A2B]">Services Offered</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {services.map((service, index) => (
                     <div key={index} className="flex gap-3">
-                      <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-[#108E66]">
+                      <div className="h-10 w-10 shrink-0 rounded-full bg-green-100 flex items-center justify-center text-spring-green">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
@@ -245,7 +281,7 @@ const AdvisorDetail: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {advisor.audience.map((type, index) => (
                     <div key={index} className="bg-gray-50 rounded-lg p-4 flex items-center">
-                      <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-[#108E66] mr-3">
+                      <div className="h-10 w-10 shrink-0 rounded-full bg-green-100 flex items-center justify-center text-spring-green mr-3">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                           <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -270,18 +306,18 @@ const AdvisorDetail: React.FC = () => {
               </div>
             )}
             
-            {/* Blog Posts Section */}
+            {/* Blog Posts Section - Improved layout */}
             <div className="mb-8">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl font-semibold text-[#272A2B]">Latest Articles</h2>
                 <Link 
                   to={`/advisor/${advisor.id}/blogs`} 
-                  className="text-[#108E66] hover:underline text-sm font-medium"
+                  className="text-spring-green hover:underline text-sm font-medium"
                 >
                   View all
                 </Link>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {sampleBlogs.map(post => (
                   <BlogPost key={post.id} post={post} />
                 ))}
@@ -291,7 +327,7 @@ const AdvisorDetail: React.FC = () => {
           
           {/* Right Column - Sidebar */}
           <div>
-            {/* Contact Card */}
+            {/* Contact Card - No longer sticky */}
             <Card className="mb-6">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg font-semibold text-[#272A2B]">Contact Information</CardTitle>
@@ -299,10 +335,10 @@ const AdvisorDetail: React.FC = () => {
               <CardContent>
                 <div className="space-y-4 mb-6">
                   <div className="flex items-start">
-                    <Mail className="w-5 h-5 text-[#108E66] mt-0.5 mr-3" />
+                    <Mail className="w-5 h-5 text-spring-green mt-0.5 mr-3" />
                     <div>
                       <p className="text-sm text-gray-500">Email</p>
-                      <a href={`mailto:${email}`} className="text-[#108E66] hover:underline">
+                      <a href={`mailto:${email}`} className="text-spring-green hover:underline">
                         {email}
                       </a>
                     </div>
@@ -310,7 +346,7 @@ const AdvisorDetail: React.FC = () => {
                   
                   {advisor.contactDetails.phone && (
                     <div className="flex items-start">
-                      <Phone className="w-5 h-5 text-[#108E66] mt-0.5 mr-3" />
+                      <Phone className="w-5 h-5 text-spring-green mt-0.5 mr-3" />
                       <div>
                         <p className="text-sm text-gray-500">Phone</p>
                         <a href={`tel:${phone}`} className="hover:underline text-[#272A2B]">
@@ -321,7 +357,7 @@ const AdvisorDetail: React.FC = () => {
                   )}
                   
                   <div className="flex items-start">
-                    <MapPin className="w-5 h-5 text-[#108E66] mt-0.5 mr-3" />
+                    <MapPin className="w-5 h-5 text-spring-green mt-0.5 mr-3" />
                     <div>
                       <p className="text-sm text-gray-500">Office Location</p>
                       <address className="not-italic text-[#272A2B]">
@@ -371,7 +407,7 @@ const AdvisorDetail: React.FC = () => {
                   <ul className="space-y-2">
                     {credentials.map((credential, index) => (
                       <li key={index} className="flex items-center">
-                        <div className="h-6 w-6 rounded-full bg-green-100 flex items-center justify-center text-[#108E66] mr-2">
+                        <div className="h-6 w-6 rounded-full bg-green-100 flex items-center justify-center text-spring-green mr-2">
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                           </svg>
